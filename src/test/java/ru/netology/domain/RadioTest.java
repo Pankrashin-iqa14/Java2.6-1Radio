@@ -12,7 +12,7 @@ class RadioTest {
         int currentStation = 9;
         sony.setCurrentRadioStation(currentStation);
         sony.nextRadioStation();
-        assertEquals(0, sony.getCurrentRadioStation());
+        assertEquals(10, sony.getCurrentRadioStation());
     }
 
     @Test
@@ -28,11 +28,18 @@ class RadioTest {
         int currentStation = 10;
         sony.setCurrentRadioStation(currentStation);
         sony.nextRadioStation();
-        assertEquals(1, sony.getCurrentRadioStation());
+        assertEquals(0, sony.getCurrentRadioStation());
     }
     @Test
     public void shouldNextRadioStation3() {
         int currentStation = -3;
+        sony.setCurrentRadioStation(currentStation);
+        sony.nextRadioStation();
+        assertEquals(1, sony.getCurrentRadioStation());
+    }
+    @Test
+    public void shouldNextRadioStation4() {
+        int currentStation = 11;
         sony.setCurrentRadioStation(currentStation);
         sony.nextRadioStation();
         assertEquals(1, sony.getCurrentRadioStation());
@@ -43,7 +50,7 @@ class RadioTest {
         int currentStation = 0;
         sony.setCurrentRadioStation(currentStation);
         sony.prevRadioStation();
-        assertEquals(9, sony.getCurrentRadioStation());
+        assertEquals(10, sony.getCurrentRadioStation());
     }
 
     @Test
@@ -67,7 +74,14 @@ class RadioTest {
         int currentStation = -1;
         sony.setCurrentRadioStation(currentStation);
         sony.prevRadioStation();
-        assertEquals(9, sony.getCurrentRadioStation());
+        assertEquals(10, sony.getCurrentRadioStation());
+    }
+    @Test
+    public void shouldPrevRadioStation4() {
+        int currentStation = 11;
+        sony.setCurrentRadioStation(currentStation);
+        sony.prevRadioStation();
+        assertEquals(10, sony.getCurrentRadioStation());
     }
 
     @Test
@@ -80,11 +94,11 @@ class RadioTest {
     }
     @Test
     public void shouldEnterNumberRadioStation1() {
-        int RadioStation = 9;
+        int RadioStation = 10;
         int currentRadioStation = 0;
         sony.setCurrentRadioStation(currentRadioStation);
         sony.enterNumberRadioStation(RadioStation);
-        assertEquals(9, sony.getCurrentRadioStation());
+        assertEquals(10, sony.getCurrentRadioStation());
     }
     @Test
     public void shouldEnterNumberRadioStation2() {
@@ -94,13 +108,22 @@ class RadioTest {
         sony.enterNumberRadioStation(RadioStation);
         assertEquals(0, sony.getCurrentRadioStation());
     }
+    @Test
+    public void shouldEnterNumberRadioStation3() {
+        int RadioStation = 11;
+        int currentRadioStation = 0;
+        sony.setCurrentRadioStation(currentRadioStation);
+        sony.enterNumberRadioStation(RadioStation);
+        assertEquals(0, sony.getCurrentRadioStation());
+    }
+
 
     @Test
     public void shouldIncreaseVolume() {
-        int currentVolume = 10;
+        int currentVolume = 101;
         sony.setCurrentVolume(currentVolume);
         sony.increaseVolume();
-        assertEquals(10, sony.getCurrentVolume());
+        assertEquals(1, sony.getCurrentVolume());
     }
     @Test
     public void shouldIncreaseVolume1() {
@@ -111,30 +134,45 @@ class RadioTest {
     }
     @Test
     public void shouldIncreaseVolume2() {
-        int currentVolume = 4;
+        int currentVolume = 50;
         sony.setCurrentVolume(currentVolume);
         sony.increaseVolume();
-        assertEquals(5, sony.getCurrentVolume());
+        assertEquals(51, sony.getCurrentVolume());
+    }
+
+    @Test
+    public void shouldIncreaseVolume3() {
+        int currentVolume = -1;
+        sony.setCurrentVolume(currentVolume);
+        sony.increaseVolume();
+        assertEquals(1, sony.getCurrentVolume());
     }
     @Test
     public void shouldDecreaseVolume() {
-        int currentVolume = 11;
+        int currentVolume = 0;
         sony.setCurrentVolume(currentVolume);
         sony.decreaseVolume();
         assertEquals(0, sony.getCurrentVolume());
     }
     @Test
     public void shouldDecreaseVolume1() {
-        int currentVolume = -2;
+        int currentVolume = 50;
         sony.setCurrentVolume(currentVolume);
         sony.decreaseVolume();
-        assertEquals(0, sony.getCurrentVolume());
+        assertEquals(49, sony.getCurrentVolume());
     }
     @Test
     public void shouldDecreaseVolume2() {
-        int currentVolume = 5;
+        int currentVolume = 100;
         sony.setCurrentVolume(currentVolume);
         sony.decreaseVolume();
-        assertEquals(4, sony.getCurrentVolume());
+        assertEquals(99, sony.getCurrentVolume());
+    }
+    @Test
+    public void shouldDecreaseVolume3() {
+        int currentVolume = -1;
+        sony.setCurrentVolume(currentVolume);
+        sony.decreaseVolume();
+        assertEquals(0, sony.getCurrentVolume());
     }
 }
